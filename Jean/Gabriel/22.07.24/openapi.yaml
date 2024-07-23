@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  version: 1.0
+  title: API Biblioteca 1.0.0.1
+  description: |-
+   Descrição topzera sobre a biblioteca
+servers:
+  - url: https://localhost:8080/api
+tags:
+  - name: Biblioteca
+    description: Informaçoes para Livros
+    externalDocs:
+      description: SEGUE O LIDER
+      url: https://www.instagram.com/g_roani/
+paths:
+  /livros:
+    get:
+      tags:
+        - Biblioteca
+      summary: Buscar livro.
+      description: Buscar um livro dentro da biblioteca.
+      responses:
+        '200':
+          description: Operação concluida com exito.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    titulo:
+                      type: integer
+                      example: O senhor dos aneis
+                    autor:
+                      type: integer
+                      example: Gabriel Roani
+                    ano:
+                      type: integer
+                      example: 1954
+    post:
+      tags:
+        - Biblioteca
+      summary: Fazer a postagem de um novo livro.
+      description: Adcionar um novo livro a biblioteca.
+      operationId: addPet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titulo:
+                  type: integer
+                  example: O senhor dos aneis
+              autor:
+                type: integer
+                example: Gabriel Roani
+              ano:
+                type: integer
+                example: 1954
+      responses:
+        '201':
+          description: Livro adcionado com exito.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    titulo:
+                      type: integer
+                      example: O senhor dos aneis
+                    autor:
+                      type: integer
+                      example: Gabriel Roani
+                    ano:
+                      type: integer
+                      example: 1954
+  /livros/{id}:
+    get:
+      tags:
+        - Biblioteca
+      summary: Requesitar livros pelo id.
+      description: Fazer a requesição de um livro pelo id.
+      responses:
+        '200':
+          description: Livro encontrado.
+    put:
+      tags:
+        - Biblioteca
+      summary: Atualizar informações do livro.
+      description: Alterar ou complementar informações sobre um livro.
+      responses:
+        '200':
+          description: Livro encontrado.
+              
+    delete:
+      tags:
+        - Biblioteca
+      summary: Atualizar informações do livro.
+      description: Alterar ou complementar informações sobre um livro.
+      responses:
+        '200':
+          description: Livro encontrado.
+              
