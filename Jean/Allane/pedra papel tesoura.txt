@@ -1,0 +1,51 @@
+package org.example;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random gerador = new Random();
+        Scanner scan = new Scanner(System.in);
+
+        String[] possibilidades = {"Pedra", "Papel", "Tesoura"};
+        String escolhaComputador, escolhaJogador;
+        int derrotas = 0, vitorias = 0;
+        boolean jogarNovamente = true;
+
+        System.out.println("Vamos jogar Pedra, Papel e Tesoura! \nSuas opções são: Pedra, Papel e Tesoura ou Sair para sair \nDiga qual vai ser sua jogada.");
+
+        while (jogarNovamente) {
+            escolhaComputador = possibilidades[gerador.nextInt(3)];
+            escolhaJogador = scanner.nextLine();
+            System.out.println("Sua jogada foi: " + escolhaJogador);
+
+            if (escolhaJogador.equalsIgnoreCase("sair")) {
+                jogarNovamente = false;
+                continue;
+            }
+
+            if (!escolhaJogador.equalsIgnoreCase("Pedra") && !escolhaJogador.equalsIgnoreCase("Papel") && !escolhaJogador.equalsIgnoreCase("Tesoura")) {
+                System.out.println("Escolha invalida! Tente novamente.");
+                continue;
+            }
+            System.out.println("A jogada do computador foi: " + escolhaComputador);
+
+            if (escolhaJogador.equalsIgnoreCase(escolhaComputador)) {
+                System.out.println("Empate!!");
+            } else if ((escolhaJogador.equalsIgnoreCase("Pedra") && escolhaComputador.equals("Tesoura")) ||
+                    (escolhaJogador.equalsIgnoreCase("Papel") && escolhaComputador.equals("Pedra")) ||
+                    (escolhaJogador.equalsIgnoreCase("tesoura") && escolhaComputador.equals("Papel"))) {
+                System.out.println("Parábens você Ganhou!!");
+                vitorias = vitorias + 1;
+            } else {
+                System.out.println("Parábens você Perdeu!!");
+                derrotas = derrotas + 1;
+            }
+            System.out.println("A pontuação foi: " + vitorias + " para você e " + derrotas + " para o computador");
+        }
+
+    }
+}
+    
