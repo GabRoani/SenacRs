@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: Biblioteca
+  description: OK tra ionmd
+  version: 1.0.0
+  
+servers:
+  - url: http://localhost:8080
+
+
+components:
+  schemas:
+    Livro:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        titulo:
+          type: string
+          example: Amaddor
+        autor:
+          type: string
+          example: Lisa Holland
+        genero:
+          type: array
+          items:
+            type: string
+
+paths:
+  /livros:
+    post:
+      summary: Coloca um livro na lista
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Livro'
+      responses:
+        '200':
+          description: boa mano, se conseguiu.
+          
+  /livros{id}:
+    parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      description: The user ID.
+    get:
+      summary: Pega um livro específico por id
+      responses:
+        '201':
+          description: Resultado do get
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Livro'
+                
+    delete:
+      summary: Deleta o livro por id
+      responses:
+        '200':
+          description: Deu certo mano
+    put:
+      summary: Atualizar um livro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Livro'
+      responses:
+        '200':
+          description: boa mano, se conseguiu.
+    
+    
+      
+          
+      
+
